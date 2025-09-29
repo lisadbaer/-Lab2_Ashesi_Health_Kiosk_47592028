@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,45 +44,67 @@ public class Main {
         int healthMetic;
         double bmi;
         float bmiRound;
+        double dosage=0;
+        double tabletNo=0;
+        double angle;
+        double sinAngle;
+        double cosAngle;
+
+
         String bmiCat="N/A";
 
 
-        System.out.println("\n"+ "Enter the health metric:" + "\n"
+        System.out.println("Enter the health metric:" + "\n" +
                 "metric: 1 for BMI, 2 for Dosage round-up, 3 for simple trig helper: ");
 
         healthMetic =input2.nextInt();
 
-        System.out.println("\n"+ "Enter your weight: ");
-        weight =input2.nextInt();
 
-        System.out.println("\n"+ "Enter your height: ");
-        height =input2.nextInt();
+        switch (healthMetic) {
+            case 1:
+                System.out.println("\n" + "Enter your weight (in kg): ");
+                weight = input2.nextDouble();
 
-        switch (healthMetic){
-            case "1":
-                bmi=weight/Math.pow(height,2);
+                System.out.println("\n" + "Enter your height (in m): ");
+                height = input2.nextDouble();
+
+                bmi = weight / Math.pow(height, 2);
                 bmiRound = (float) (Math.round(bmi * 10) / 10.0);
-                if (bmiRound <18.5) {
+
+                if (bmiRound < 18.5) {
                     bmiCat = "Underweight";
-                 } else if (bmiRound >=18.5 && bmiRound <=24.9) {
+                } else if (bmiRound >= 18.5 && bmiRound <= 24.9) {
                     bmiCat = "Normal";
-                } else if (bmiRound >=25 && bmiRound <=29.9) {
+                } else if (bmiRound >= 25 && bmiRound <= 29.9) {
                     bmiCat = "Overweight";
                 } else {
                     bmiCat = "Obese";
                 }
 
-                System.out.println("\n"+"You are "+bmiCat);
+                System.out.println("\n" + "You are " + bmiCat);
+                break;
+
+            case 2:
+                System.out.println("\n" + "Enter the required dosage (in mg): ");
+                dosage = input2.nextDouble();
+
+                tabletNo = dosage / 250;
+
+                System.out.println("\n" + "You need " + Math.ceil(tabletNo) + " tablets.");
 
                 break;
-            case "2":
-                serivce ="Lab";
-                break;
-            case "3":
-                System.out.println("Invalid service code");
+            case 3:
+                System.out.println("\n" + "Enter the angle (in degrees): ");
+                angle = input2.nextDouble();
+                sinAngle = Math.sin(Math.toRadians(angle));
+                cosAngle = Math.cos(Math.toRadians(angle));
+
+                System.out.println("The angle is " + Math.round(angle * 1000) / 1000.0);
+                System.out.println("The angle in sin is " + Math.round(sinAngle * 1000) / 1000.0);
+                System.out.println("The angle in cos is " + Math.round(cosAngle * 1000) / 1000.0);
         }
 
-
+//Task 3
 
 
 

@@ -105,6 +105,11 @@ public class Main {
         }
 
 //Task 3
+ char letter = (char) ('A' + (int)(Math.random() * 26));
+        int num = (int) ('3' + (int)(Math.random() * 7));
+        String code = letter + num
+
+
 
 
 

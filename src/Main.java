@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,30 +10,30 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
 
-        System.out.println("Enter service code (P/L/T/C): ");
+        System.out.println("Enter service codeLet (P/L/T/C): ");
 
-        serviceInput =input.nextLine();
+        serviceInput = input.nextLine();
         serviceInput = serviceInput.strip().toUpperCase();
 
-        serviceLetter = serviceInput.substring(0,1);
+        serviceLetter = serviceInput.substring(0, 1);
 
-        serivce="N/A";
+        serivce = "N/A";
 
-        switch (serviceLetter){
+        switch (serviceLetter) {
             case "P":
-                serivce ="Pharamacy";
+                serivce = "Pharamacy";
                 break;
             case "L":
-                serivce ="Lab";
+                serivce = "Lab";
                 break;
             case "T":
-                serivce ="Triage";
+                serivce = "Triage";
                 break;
             case "C":
-                serivce ="Counseling";
+                serivce = "Counseling";
                 break;
             default:
-                System.out.println("Invalid service code");
+                System.out.println("Invalid service codeLet");
                 break;
         }
         System.out.println("Go to: " + serivce);
@@ -44,20 +43,20 @@ public class Main {
         int healthMetic;
         double bmi;
         float bmiRound;
-        double dosage=0;
-        double tabletNo=0;
+        double dosage = 0;
+        double tabletNo = 0;
         double angle;
         double sinAngle;
         double cosAngle;
 
 
-        String bmiCat="N/A";
+        String bmiCat = "N/A";
 
 
         System.out.println("Enter the health metric:" + "\n" +
                 "metric: 1 for BMI, 2 for Dosage round-up, 3 for simple trig helper: ");
 
-        healthMetic =input2.nextInt();
+        healthMetic = input2.nextInt();
 
 
         switch (healthMetic) {
@@ -105,12 +104,51 @@ public class Main {
         }
 
 //Task 3
- char letter = (char) ('A' + (int)(Math.random() * 26));
-        int num = (int) ('3' + (int)(Math.random() * 7));
-        String code = letter + num
+        char letter;
+        String codeNum;
+
+        //Generating random letter and first random number
+        letter = (char) ('A' + (int) (Math.random() * 26));
+        int num = 3 + (int) (Math.random() * 7);
+        codeNum = String.valueOf(num);
+
+// converting to string
+        String codeLet = String.valueOf(letter);
+
+// adding remaining numbers to codeNum
+
+        for (int i = 0; i < 3; i++) {
+            num = 3 + (int) (Math.random() * 7);
+            codeNum = codeNum.concat(String.valueOf(num));
+        }
+
+        String code = codeLet + codeNum;
+        System.out.println(code);
+        System.out.println("len: "+code.length());
+        //String code1 = String.valueOf(codeLet.charAt(0));
+        // String code2 = String.valueOf(codeLet.charAt(2));
+        // String code3 = codeLet.substring(codeLet.length() - 2);
 
 
+        if (code.length() != 5) {
+            System.out.println("Invalid length");
+        } else if (!Character.isLetter(codeLet.charAt(0))) {
+            System.out.println("Invalid output, missing Letter");
+        } else {
+            boolean allDigits = true;
+            for (int n = 1; n < code.length(); n++) { // check only last 4 chars
+                if (!Character.isDigit(code.charAt(n))) {
+                    allDigits = false;
+                    break;
+                }
+            }
 
+            if (!allDigits) {
+                System.out.println("Invalid output, not enough digits");
+            } else {
+                System.out.println("ID okay");
+            }
+        }
 
 
     }
